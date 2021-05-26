@@ -1,4 +1,5 @@
 """Test."""
+import sys
 import os
 import unittest
 import time
@@ -40,6 +41,7 @@ class TestGeoServer(unittest.TestCase):
                 'province': 'LK-1',
                 'district': 'LK-11',
                 'dsd': 'LK-1127',
+                'gnd': 'LK-1127015',
             },
         )
 
@@ -61,6 +63,15 @@ class TestGeoServer(unittest.TestCase):
         self.assertEqual(
             geo,
             {},
+        )
+
+    def test_altitude(self):
+        """Test."""
+        latlng_str_1 = '6.9157,79.8636'
+        alt = self.__client.run('altitude', [latlng_str_1])
+        self.assertEqual(
+            alt,
+            {'altitude': 12},
         )
 
 

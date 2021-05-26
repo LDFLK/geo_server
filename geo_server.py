@@ -3,7 +3,7 @@ from flask import Flask
 from flask_caching import Cache
 
 from utils.sysx import log_metrics
-from geo import geodata
+from geo import alt, geodata
 
 DEFAULT_CACHE_TIMEOUT = 1
 
@@ -39,3 +39,14 @@ def latlng_to_region(latlng_str):
 def region_geo(region_id):
     """Get region."""
     return geodata.get_region_geo(region_id)
+
+
+@app.route('/altitude/<string:latlng_str>')
+@cache.cached(timeout=DEFAULT_CACHE_TIMEOUT)
+def altitude(latlng_str):
+    """Get altitude for latlng."""
+    lat, _, lng = latlng_str.partition(',')
+    lat_lng = (float)(lat), (float)(lng)
+    return {
+        'altitude': alt.get_altitude(lat_lng),
+    }
