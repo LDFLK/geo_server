@@ -1,0 +1,6 @@
+flask
+flask_caching
+waitress
+
+geo-nuuuwan==0.3.11
+geopandas

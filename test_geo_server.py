@@ -19,9 +19,9 @@ class TestGeoServer(unittest.TestCase):
     def setUp(self):
         """Init test."""
         if not SERVER_NAME:
-            os.system('./local_flask_stop.sh')
+            os.system('./test_local_flask_stop.sh')
             print('Starting flask...')
-            os.system('./local_flask_start.sh &')
+            os.system('./test_local_flask_start.sh &')
             time.sleep(2)
         self.__client = FlaskClient(SERVER_NAME, HOST, PORT)
 
@@ -29,7 +29,7 @@ class TestGeoServer(unittest.TestCase):
         """Teardown test."""
         if not SERVER_NAME:
             print('Stopping flask...')
-            os.system('./local_flask_stop.sh')
+            os.system('./test_local_flask_stop.sh')
 
     def test_latlng_to_region(self):
         """Test."""

@@ -17,12 +17,7 @@ cache.init_app(app)
 @cache.cached(timeout=DEFAULT_CACHE_TIMEOUT)
 def index():
     """Index."""
-    log_metrics()
-    return '''
-<html>
-    <h1>GeoServer</h1>
-</html>
-    '''
+    return log_metrics() | {'server': 'geo_server'}
 
 
 @app.route('/latlng_to_region/<string:latlng_str>')
@@ -50,3 +45,10 @@ def altitude(latlng_str):
     return {
         'altitude': alt.get_altitude(lat_lng),
     }
+
+
+if __name__ == '__main__':
+    from waitress import serve
+    HOST, PORT = '0.0.0.0', 4002
+    print('Starting %s_server on %s:%d with waitress...' % ('geo', HOST, PORT))
+    serve(app, host=HOST, port=PORT, threads=16)
