@@ -9,13 +9,13 @@ DEFAULT_CACHE_TIMEOUT = 1
 
 log_metrics()
 app = Flask(__name__)
-cache = Cache(config={'CACHE_TYPE': 'NullCache'})
+cache = Cache(config={'CACHE_TYPE': 'SimpleCache'})
 cache.init_app(app)
 
 
-@app.route('/')
+@app.route('/status')
 @cache.cached(timeout=DEFAULT_CACHE_TIMEOUT)
-def index():
+def status():
     """Index."""
     return log_metrics() | {'server': 'geo_server'}
 
