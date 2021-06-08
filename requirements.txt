@@ -1,7 +1,7 @@
 flask
 flask_cors
 flask_caching
-waitress
+gunicorn
 
-geo-nuuuwan==0.3.11
+geo-nuuuwan==1.0.0
 geopandas

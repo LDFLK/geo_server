@@ -4,6 +4,8 @@ WORKDIR /geo_server
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 COPY geo_server.py geo_server.py
+COPY test_key.pem test_key.pem
+COPY test_cert.pem test_cert.pem
 
 EXPOSE 4002
-CMD [ "python", "geo_server.py"]
+CMD [ "gunicorn", "--workers", "16", "--certfile", "test_cert.pem", "--keyfile", "test_key.pem", "--bind", "0.0.0.0:4002", "geo_server:app"]

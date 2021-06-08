@@ -50,7 +50,4 @@ def altitude(latlng_str):
 
 
 if __name__ == '__main__':
-    from waitress import serve
-    HOST, PORT = '0.0.0.0', 82
-    print('Starting %s_server on %s:%d with waitress...' % ('geo', HOST, PORT))
-    serve(app, host=HOST, port=PORT, threads=16)
+    app.run(ssl_context=('test_cert.pem', 'test_key.pem'))
