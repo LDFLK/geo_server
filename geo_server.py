@@ -23,7 +23,7 @@ def _warmup():
     )
 
 
-log_metrics()
+print(log_metrics())
 _warmup()
 app = Flask(__name__)
 CORS(app)
