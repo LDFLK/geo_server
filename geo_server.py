@@ -10,16 +10,16 @@ from utils.sysx import log_metrics
 from geo import alt, geodata
 
 DEFAULT_CACHE_TIMEOUT = 120
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 
 def _warmup():
-    logging.debug(log_metrics())
+    logging.info(log_metrics())
     random_latlng = [6 + random.random() * 3, 79.9 + random.random()]
     geodata.get_latlng_regions(random_latlng)
     region_id = 'LK-%d' % (random.randint(1, 9))
     geodata.get_region_geo(region_id)
-    logging.debug('GeoServer warmup complete.')
+    logging.info('GeoServer warmup complete.')
 
 
 _warmup()
@@ -66,7 +66,7 @@ def altitude(latlng_str):
 if __name__ == '__main__':
     PORT = 4002
     HOST = '0.0.0.0'
-    logging.debug('Starting geo_server on %s:%d...' % (HOST, PORT))
+    logging.info('Starting geo_server on %s:%d...' % (HOST, PORT))
     serve(
         app,
         host=HOST,
