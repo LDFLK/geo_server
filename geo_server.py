@@ -1,4 +1,5 @@
 """GeoServer."""
+import random
 from flask import Flask
 from flask_caching import Cache
 from flask_cors import CORS
@@ -12,7 +13,14 @@ DEFAULT_CACHE_TIMEOUT = 1
 
 
 def _warmup():
-    geodata.get_latlng_regions([0, 0])
+    random_latlng = [
+        6 + random.random() * 3,
+        79.9 + random.random(),
+    ]
+    print(
+        random_latlng,
+        geodata.get_latlng_regions(random_latlng),
+    )
 
 
 log_metrics()
@@ -58,7 +66,7 @@ def altitude(latlng_str):
 
 
 if __name__ == '__main__':
-    PORT = 4002
+    PORT = 4003
     HOST = '0.0.0.0'
     print('Starting geo_server on %s:%d...' % (HOST, PORT))
     serve(
