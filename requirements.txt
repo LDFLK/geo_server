@@ -3,5 +3,8 @@ flask_cors
 flask_caching
 waitress
 
-geo-nuuuwan==1.0.0
+GDAL
+rasterio
+fiona
 geopandas
+geo-nuuuwan==1.0.0
