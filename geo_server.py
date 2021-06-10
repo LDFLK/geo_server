@@ -66,7 +66,7 @@ def altitude(latlng_str):
 
 
 if __name__ == '__main__':
-    PORT = 4003
+    PORT = 4002
     HOST = '0.0.0.0'
     print('Starting geo_server on %s:%d...' % (HOST, PORT))
     serve(
