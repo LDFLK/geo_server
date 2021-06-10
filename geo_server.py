@@ -73,5 +73,5 @@ if __name__ == '__main__':
         app,
         host=HOST,
         port=PORT,
-        threads=32,
+        threads=8,
     )
