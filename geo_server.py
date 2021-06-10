@@ -2,13 +2,21 @@
 from flask import Flask
 from flask_caching import Cache
 from flask_cors import CORS
+from waitress import serve
+
 
 from utils.sysx import log_metrics
 from geo import alt, geodata
 
 DEFAULT_CACHE_TIMEOUT = 1
 
+
+def _warmup():
+    geodata.get_latlng_regions([0, 0])
+
+
 log_metrics()
+_warmup()
 app = Flask(__name__)
 CORS(app)
 cache = Cache(config={'CACHE_TYPE': 'SimpleCache'})
@@ -50,11 +58,12 @@ def altitude(latlng_str):
 
 
 if __name__ == '__main__':
-    from waitress import serve
-    print('Starting geo_server on waitress...')
+    PORT = 4002
+    HOST = '0.0.0.0'
+    print('Starting geo_server on %s:%d...' % (HOST, PORT))
     serve(
         app,
-        host='0.0.0.0',
-        port=4002,
+        host=HOST,
+        port=PORT,
         threads=32,
     )
