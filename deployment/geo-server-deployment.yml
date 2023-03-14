@@ -18,7 +18,7 @@ spec:
         app_name: geo-server
     spec:
       containers:
-        - image: ghcr.io/ldflk/geo_server:main-17114efb6f7830ad02e914f80a9cf95d675259f1
+        - image: geoserverreg.azurecr.io/geo-server
           imagePullPolicy: Always
           name: geo-server
           ports:
