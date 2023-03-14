@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    reloader.stakater.com/auto: "true"
+  labels:
+    app_name: geo-server
+  name: geo-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app_name: geo-server
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app_name: geo-server
+    spec:
+      containers:
+        - image: ghcr.io/ldflk/geo_server:main-17114efb6f7830ad02e914f80a9cf95d675259f1
+          imagePullPolicy: Always
+          name: geo-server
+          ports:
+            - containerPort: 4002
+              name: port-4002
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 310m
+              memory: 512Mi
+            requests:
+              cpu: 310m
+              memory: 512Mi
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 60

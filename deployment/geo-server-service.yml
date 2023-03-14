@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations: {}
+  labels:
+    app_name: geo-server
+  name: geo-server
+spec:
+  ports:
+    - name: port-4002
+      port: 4002
+      targetPort: 4002
+  selector:
+    app_name: geo-server
+  type: ClusterIP
