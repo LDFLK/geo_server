@@ -13,6 +13,7 @@ env:
     DEPLOYMENT_MANIFEST_PATH: |
         ./deployment/geo-server-deployment.yml
         ./deployment/geo-server-service.yml
+        ./deployment/geo-server-ingress.yml
 jobs:
     buildImage:
         permissions:
