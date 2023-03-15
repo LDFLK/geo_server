@@ -5,6 +5,7 @@ RUN apt-get update \
     && apt-get clean
 
 COPY requirements.txt requirements.txt
+RUN apt-get update && apt-get install libgl1
 RUN pip3 install -r requirements.txt
 COPY geo_server.py geo_server.py
 
