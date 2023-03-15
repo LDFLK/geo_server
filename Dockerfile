@@ -1,4 +1,4 @@
-FROM python:3.8-slim-buster
+FROM python:3.8.11-slim-buster
 WORKDIR /geo_server
 RUN apt-get update \
     && apt-get install gcc -y \

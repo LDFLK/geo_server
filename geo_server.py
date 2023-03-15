@@ -6,7 +6,7 @@ from flask_caching import Cache
 from flask_cors import CORS
 from waitress import serve
 
-import log_metrics
+from utils.sysx import log_metrics
 from geo import alt, geodata
 
 DEFAULT_CACHE_TIMEOUT = 120
